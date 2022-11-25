@@ -3,16 +3,18 @@ class TicTacToeBoard:
         self.new_game()
 
     def new_game(self):
-        self.board = [[2, 2, 2]] * 3
+        self.board = []
+        for i in range(3):
+            self.board.append([10, 10, 10])
         self.result = None
         self.turn = 1
 
-    def get_board(self):
+    def get_field(self):
         output = []
         for i in self.board:
             x = []
             for j in i:
-                if j == 2:
+                if j == 10:
                     x.append('-')
                 elif j == 1:
                     x.append('X')
@@ -47,7 +49,7 @@ class TicTacToeBoard:
     def make_move(self, row, col):
         if self.result != None:
             return 'Игра уже завершена'
-        if self.board[row-1][col-1] == 2:
+        if self.board[row-1][col-1] != 10:
             return f'Клетка {row}, {col} уже занята'
         self.board[row-1][col-1] = self.turn
         self.turn = -self.turn
